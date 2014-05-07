@@ -1,7 +1,7 @@
 # PokerGame Class
 
 class PokerGame
-  attr_accessor :deck
+  attr_accessor :hands
   def initialize(number_of_players)
     @deck = create_deck
     @players = create_players(number_of_players)

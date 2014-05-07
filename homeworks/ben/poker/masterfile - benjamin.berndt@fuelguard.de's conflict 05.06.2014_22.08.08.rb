@@ -9,5 +9,6 @@ game.run_standard_game
 puts "---------"
 puts game.hands
 game.hands.each do |player, hand|
-  HandAnalyzer.new(hand)
+  puts hand
+  #HandAnalyzer.new(hand)
 end
