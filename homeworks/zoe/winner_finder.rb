@@ -6,6 +6,7 @@ class WinnerFinder
 						"Flush" => 6, "Straight" => 5, "Three of a kind" => 4,
 					 	"two pairs" => 3, "pair" => 2, "high card" => 1}
 
+    
 	def initialize(hands)
 		@hands = hands
 	end
@@ -64,20 +65,20 @@ class WinnerFinder
   			# really not good!! have to put royal flush, straight flush
   			# and straigh together! 
   			if num_suits(hand).max >= 5 && num_faces(hand)[0..4] == Array.new(5,1) 
-  				@@hand_category = "Royal Flush"
+  				hand_category = "Royal Flush"
   			elsif num_faces(hand).max >= 4
-  				@@hand_category = "Four of a kind"
+  				hand_category = "Four of a kind"
   			elsif num_faces(hand).max == 3
-  				@@hand_category = "Three of a kind"
+  				hand_category = "Three of a kind"
   			elsif num_faces(hand).max == 2
-  				@@hand_category = "pair"
+  				hand_category = "pair"
   			elsif num_faces(hand).sort.last>=3 && num_faces(hand).sort[12]>=2
-  				@@hand_category = "Full House"
+  				hand_category = "Full House"
   			elsif num_faces(hand).sort.last == 2 && num_faces(hand).sort[12]==2
-  				@@hand_category = "two pairs"
+  				hand_category = "two pairs"
   			end  
   		end
-  		return @@hand_category
+  		return hand_category
   	end
 
   	# determine the winner
