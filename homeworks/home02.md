@@ -20,13 +20,13 @@ class Product
   def price
     @price
   end
-
 end
 ```
 
 ```ruby
 # file shopping_cart.rb
 class ShoppingCart
+
   def initialize
     @products = []
   end
@@ -54,7 +54,7 @@ class ShoppingCart
 end
 ```
 
-in irb if you load this two files, you should be able to do the following
+in irb if you load these two files you should be able to do the following:
 ```ruby
 $  irb
 irb(main)> load 'product.rb'
@@ -93,7 +93,7 @@ irb(main):014:0>
 
 ### Homework
 
-1. Extend the product such that it allows you to add a discount percentage. 
+1) Extend the product such that it allows you to add a discount percentage. 
 The method price should return the price with the discount applied, for example:
 ```ruby
 $  irb
@@ -104,7 +104,7 @@ irb(main)> mouse.price
 ```
 
 
-2. Extend the shopping cart such that it can display you the most expensive product, for example:
+2) Extend the shopping cart such that it can display you the most expensive product, for example:
 
 ```ruby
 $  irb
@@ -134,7 +134,7 @@ Keyboard 69.99€, is the most expensive product.
 ```
 
 
-3. Extend the shopping cart such that it can remove a product by name, for example:
+3) Extend the shopping cart such that it can remove a product by name, for example:
 (If there are more products with the same name remove them all.)
 
 ```ruby
