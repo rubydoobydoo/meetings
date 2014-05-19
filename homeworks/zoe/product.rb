@@ -1,6 +1,6 @@
 class Product
 	# initializes instances of the class
-	def initialize(name, brand, price, discount)
+	def initialize(name, brand, price, discount = 0)
 		@name = name
 		@brand = brand
 		@price = price

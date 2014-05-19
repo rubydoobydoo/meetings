@@ -22,6 +22,6 @@ puts laptop.price
 
 shopping_cart.most_expensive
 
-shopping_cart.delete("Mouse")
+shopping_cart.remove("Mouse")
 
 shopping_cart.list_products

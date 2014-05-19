@@ -30,20 +30,24 @@ class ShoppingCart
 	end
 
 	def most_expensive
-		name = "nthg"
-		price = 0
-		@shopping_cart.each{ 
-			|item| name = item.name, price = item.price if item.price > price
-		}
-		puts "#{name} #{price} is the most expensive item."
+		# original idea
+		#name = "nthg"
+		#price = 0
+		#@shopping_cart.each{ 
+		#	|item| name = item.name, price = item.price if item.price > price
+		#}
+		#puts "#{name} #{price} is the most expensive item."
+		# ruby cuteness :)
+		@shopping_cart.max_by{ |item| item.price }
 	end
 
 	def remove(name)
-		dlt_item = nil
-		@shopping_cart.each{ 
-			|item| dlt_item = item if name = item.name
-		}
-		puts dlt_item.name
-		@shopping_cart.delete(dlt_item)
+		#dlt_item = nil
+		#@shopping_cart.each{ 
+		#	|item| dlt_item = item if name = item.name
+		#}
+		#puts dlt_item.name
+		#@shopping_cart.delete(dlt_item)
+		@shopping_cart.delete_if{ |item| item.name == name }
 	end
 end
