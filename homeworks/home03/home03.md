@@ -82,10 +82,14 @@ Here are some ideas:
 
 **Add a headline**
 
-    <h1>Welcome to Rubydoobydoo Shop!</h1>
+```html
+<h1>Welcome to Rubydoobydoo Shop!</h1>
+```
 
 **Links**
 
 Create a link for each product in the product list:
 
-    <a href="/products/Banana">Banana</a>
+```html
+<a href="/products/Banana">Banana</a>
+```
