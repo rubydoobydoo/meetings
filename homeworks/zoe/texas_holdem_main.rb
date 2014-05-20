@@ -1,18 +1,18 @@
 require_relative "players_hands"
 require_relative "winner_finder"
 
-player_num = 5
+player_num = 8
 turns_hands = PlayersHands.new(player_num)
 
 # create and shuffle deck
-deck = turns_hands.make_deck
-deck = turns_hands.shuffle_deck(deck)
+turns_hands.make_deck
+turns_hands.shuffle_deck
 
 # begin game players hands
-hands = turns_hands.make_hands(deck, player_num)
-
+hands = turns_hands.make_hands(player_num)
+puts hands[1].class
 counter = 1
-hands.each { |h| puts "player #{counter}: #{h}" 
+hands.each { |h| puts "player #{counter}: #{h.join(' ')}" 
                  counter +=1}
 puts "-----"
 finder = WinnerFinder.new(hands)
