@@ -15,7 +15,6 @@ class ShoppingCart
 	end
 	def list_products
 		@products.each {|product| puts "Product: #{product.name}, costs: #{product.price} Euro"}
-		"yeah"
 	end
 
 	def products
@@ -43,16 +42,21 @@ class ShoppingCart
 end
 
 class Product
+	@@product_list = []
 	def initialize(name, price, discount = 0)
-		@name = name
+		@name = name 
 		@price = price
 		@discount = discount
+		@@product_list << self
 	end
 	def name
 		@name
 	end
 	def price
 		@price * (1 - @discount)
+	end
+	def self.list
+		@@product_list
 	end
 end
 
