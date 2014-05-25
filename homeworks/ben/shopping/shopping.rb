@@ -52,7 +52,8 @@ class Cart
     content.each do |product|
       puts "#{product.name}: #{product.price} €"
     end
-    puts "Sum:  #{self.total} €"
+    "Sum:  #{self.total} €"
+    "Sum:  #{self.total} €"
   end
 
   def most_expensive
