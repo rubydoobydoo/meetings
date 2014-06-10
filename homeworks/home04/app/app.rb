@@ -12,3 +12,9 @@ get '/products' do
 
   response
 end
+
+get '/products/:id' do
+  #TODO: HOMEWORK
+  #      Implement ProductStore.find(params[:id])
+  "Hoemwork show product with ID #{params[:id]}"
+end
