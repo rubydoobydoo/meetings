@@ -2,14 +2,23 @@ require 'sinatra'
 require './product'
 
 def products
-  products = []
-  products << Product.new("Beer", 0.99)
-  products << Product.new("Banana", 1.50)
-  products << Product.new("foobaa", 100.00)
+  @@products ||= []
 end
 
 get '/' do
-  '<h1>Welcome to Rubydoobydoo Shop!</h1>'
+  '<h1>Welcome to Rubydoobydoo Shop!</h1>
+  <form action="/products" method="post">
+    <input type="text" name="name" />
+    <input type="text" name="price" />
+    <button type="submit">Add</button>
+  </form>'
+end
+
+post '/products' do
+  product = Product.new(params[:name], params[:price].to_f)
+  products << product
+  id = products.length - 1
+  redirect "/products/#{id}"
 end
 
 get '/products' do
