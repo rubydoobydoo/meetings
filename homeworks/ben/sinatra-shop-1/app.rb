@@ -1,5 +1,7 @@
-require 'rubygems'
 require 'sinatra'
+require_relative './gemfile.rb'
+require_relative './db/create_db.rb'
+require_relative './db/config.rb'
 require_relative './models/product.rb'
 require_relative './models/cart.rb'
 #require_relative "./models/crawl.rb"
@@ -8,14 +10,16 @@ require_relative "./models/mail_account.rb"
 require_relative './helpers/product_initializers.rb'
 require_relative './api/api.rb'
 
-def render_correct_template(string, params)
-  format = "normal" if params["format"].nil?
-  case format
-  when "plain" then return string
-  when "normal" then return erb string
-  else return "Error occured: Invalid format!"
-  end
-end
+
+
+# def render_correct_template(string, params)
+#   format = "normal" if params["format"].nil?
+#   case format
+#   when "plain" then return string
+#   when "normal" then return erb string
+#   else return "Error occured: Invalid format!"
+#   end
+# end
 
 configure do
   enable :sessions
@@ -25,6 +29,11 @@ helpers do
   def username
     session[:identity] ? session[:identity] : 'Hello stranger'
   end
+end
+
+get '/sessiontest' do
+  session["value"] ||= "Hello world!"
+  "The cookie you've created contains the value: #{session["value"]}"
 end
 
 get '/stream' do
@@ -61,6 +70,25 @@ get '/products' do
   products = Product.show_products
   erb "#{products}"
 end
+
+post '/products/buy' do
+  cart = Cart.carts.first
+  cart.params[:name]
+end
+
+get '/product_search' do
+   erb :product_search
+end
+
+post '/product_search/search' do
+   products = Product.find_product_by_name(params[:product_name])
+   if products != ""
+      erb "#{products}"
+   else
+      erb "I couldn't find #{params[product_name]}"
+   end
+end
+
 
 get '/cart' do
   cart = Cart.carts.first

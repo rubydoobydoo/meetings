@@ -1,16 +1,18 @@
 class Cart
   attr_accessor :content
-  @@carts = []
+  @@db_table = DB[:carts]
 
   def initialize(owner)
     puts "New Cart created for #{owner}"
     @owner = owner
     @content = []
-    @@carts.push self
+    push_to_db(self)
   end
 
-  def self.carts
-    @@carts
+  def push_to_db(cart_object)
+    # populate the table
+    insertion = @@db_table.insert(:name => cart_object.name, :price => product_object.price)
+    puts "#{self.name} saved in DB."
   end
 
   def add_product(product, quantity)

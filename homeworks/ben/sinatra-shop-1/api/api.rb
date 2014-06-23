@@ -11,7 +11,6 @@ get '/api' do
         mail_account.possible_passwords do |pw|
           out << "yeah"
           out << mail_account.try_password(pw)
-
         end
       end
 
