@@ -24,7 +24,9 @@ class Product
     products = "<h2> Products </h2>"
     new_line = "<br>"
     @@db_table.each do |product|
-      products += "#{product[:name]} #{product[:price]} #{new_line}"
+      delete_link = "/products/delete/#{product[:id]}"
+      delete_link = "<a href='#{delete_link}'>Delete</a>"
+      products += "#{product[:name]} #{product[:price]} #{delete_link} #{new_line}"
       #products += "#{product}"
     end
     products.to_s
@@ -32,6 +34,12 @@ class Product
 
   def self.number_of_products
     @@db_table.count
+  end
+
+  def self.delete(id)
+    product = @@db_table.where(:id=>id.to_i).first
+    DB.execute "DELETE FROM products WHERE id = #{id}"
+    "#{product[:name]} has been deleted."
   end
 
   def self.find_product_by_name(product_name)

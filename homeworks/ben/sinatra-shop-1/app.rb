@@ -33,7 +33,7 @@ end
 
 get '/sessiontest' do
   session["value"] ||= "Hello world!"
-  "The cookie you've created contains the value: #{session["value"]}"
+  "The cookie you've created contains the value: #{session["value"]}. The entire cookie is #{session}"
 end
 
 get '/stream' do
@@ -55,7 +55,7 @@ before '/secure/*' do
 end
 
 get '/hi/:name' do
-  a = render_correct_template("<h1>Hello #{params[:name]}</h1>", params)
+  erb("<h1>Hello #{params[:name]}</h1>", params)
 end
 
 get '/' do
@@ -87,6 +87,12 @@ post '/product_search/search' do
    else
       erb "I couldn't find #{params[product_name]}"
    end
+end
+
+get '/products/delete/:id' do
+
+   erb Product.delete(params[:id])
+
 end
 
 
