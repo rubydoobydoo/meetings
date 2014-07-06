@@ -1,17 +1,19 @@
 class Product
 
-  def initialize(name, price, discount=0)
-    @name = name
-    @price = price
-    @discount = discount
+  attr_reader :id, :name, :price
+
+  def initialize(params)
+    @name = params[:name]
+    @price = params[:price]
+    @id = params[:id]
   end
-  
+
   def name
     @name
   end
-  
+
   def price
-    (@price * (1 - @discount)).round(2)
+    @price.round(2)
   end
-  
+
 end

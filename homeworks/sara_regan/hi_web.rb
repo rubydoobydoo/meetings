@@ -1,8 +1,10 @@
 require 'sinatra'
-require './product'
+require_relative 'product'
+require_relative 'product_store'
+
 
 def products
-  @@products ||= []
+  ProductStore.all
 end
 
 get '/' do
@@ -15,22 +17,33 @@ get '/' do
 end
 
 post '/products' do
-  product = Product.new(params[:name], params[:price].to_f)
-  products << product
-  id = products.length - 1
-  redirect "/products/#{id}"
+  product = Product.new(:name => params[:name], :price => params[:price].to_f)
+  ProductStore.add(product)
+  redirect "/products"
 end
+
 
 get '/products' do
   html = "<ul>"
-  products.each_with_index do |product, index|
-    html += "<li><a href='/products/#{index}'>#{product.name}</a> $#{product.price}</li>"
+  products.each do |product|
+    html += "<li><a href='/products/#{product.id}'>#{product.name}</a> $#{product.price}</li>"
   end
   html += "</ul>"
   html
 end
 
 get '/products/:id' do
-  product = products[params[:id].to_i]
-  "<h1>this product is a #{product.name} and it costs $#{product.price}</h1>"
+  product = ProductStore.find(params[:id])
+  """
+  <p>#{product.name}  #{product.price}</p>
+  <form action='/products/#{product.id}' method='post'>
+  <input type='hidden' name='_method' value='delete'>
+      <button type='submit'>Delete</button>
+  </form>
+  """
+end
+
+delete '/products/:id' do
+  ProductStore.delete(params[:id])
+  redirect "/products"
 end

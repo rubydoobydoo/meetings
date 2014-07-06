@@ -8,6 +8,11 @@ class ProductStore
       Product.new(product_data[:name], product_data[:price])
     end
   end
+  
+  def self.find(id)
+    product_data = products_table.where({id: id}).first
+    Product.new(product_data[:name], product_data[:price])
+  end
 
   def self.products_table
     db = Sequel.sqlite("store.sqlite")

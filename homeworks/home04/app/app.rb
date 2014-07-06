@@ -15,6 +15,6 @@ end
 
 get '/products/:id' do
   #TODO: HOMEWORK
-  #      Implement ProductStore.find(params[:id])
-  "Hoemwork show product with ID #{params[:id]}"
+  product = ProductStore.find(params[:id])
+  "This is a #{product.name} and it costs #{product.price}"
 end
